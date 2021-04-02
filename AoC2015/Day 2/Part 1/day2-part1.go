@@ -19,7 +19,7 @@ func main() {
 
 	for {
 
-		_, err := fmt.Fscanf(file, "%d\n", &perline) // give a patter to scan
+		_, err := fmt.Fscanf(file, "%d\n", &perline) // give a pattern to scan
 
 		if err != nil {
 
