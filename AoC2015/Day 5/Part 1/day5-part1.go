@@ -26,42 +26,33 @@ func threeVowels(currStr string) bool {
 	vowelCount := 0
 
 	for j := 0; j < len(currStr); j++ {
-		vowelCount := 0
 
 		if currStr[j] == 'a' || currStr[j] == 'e' || currStr[j] == 'i' || currStr[j] == 'o' || currStr[j] == 'u' {
 			vowelCount++
 		}
 	}
 
-	if vowelCount < 3 {
-		return false
-	}
-
-	return true
+	return vowelCount >= 3
 }
 
 func doubleLetters(currStr string) bool {
 	count := 0
 
-	for i := 0; i < len(currStr); i++ {
+	for i := 0; i < (len(currStr) - 1); i++ {
 
 		if currStr[i] == currStr[i+1] {
 			count++
 		}
 	}
 
-	if count < 1 {
-		return false
-	}
-
-	return true
+	return count >= 1
 }
 
-func forbiddenChars(currStr string) bool {
+func noForbiddenChars(currStr string) bool {
 	if strings.Contains(currStr, "ab") || strings.Contains(currStr, "cd") || strings.Contains(currStr, "pq") || strings.Contains(currStr, "xy") {
-		return true
+		return false
 	}
-	return false
+	return true
 }
 
 func main() {
@@ -74,15 +65,15 @@ func main() {
 
 	for i := range strList {
 
-		hasThreeVowels, hasDoubleLetters, hasForbiddenChars := false, false, true
+		hasThreeVowels, hasDoubleLetters, hasNoForbiddenChars := false, false, false
 
 		currStr := strList[i]
 
 		hasThreeVowels = threeVowels(currStr)
 		hasDoubleLetters = doubleLetters(currStr)
-		hasForbiddenChars = forbiddenChars(currStr)
+		hasNoForbiddenChars = noForbiddenChars(currStr)
 
-		if hasThreeVowels && hasDoubleLetters && !hasForbiddenChars {
+		if hasThreeVowels && hasDoubleLetters && hasNoForbiddenChars {
 			niceStrings++
 		}
 
