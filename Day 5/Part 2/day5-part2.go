@@ -9,11 +9,25 @@ import (
 func twoSetsDoubleLetters(s string) bool {
 	doubleLetters := 0
 
+	for i := 0; i < len(s)-1; i++ {
+		for j := i + 2; j < len(s)-1; j++ {
+			if s[i] == s[j] && s[i+1] == s[j+1] {
+				doubleLetters++
+			}
+		}
+	}
+
 	return doubleLetters >= 1
 }
 
 func oneLetterBetweenMatching(s string) bool {
 	oneBetween := 0
+
+	for i := 0; i < len(s)-2; i++ {
+		if s[i] == s[i+2] {
+			oneBetween++
+		}
+	}
 
 	return oneBetween >= 1
 
