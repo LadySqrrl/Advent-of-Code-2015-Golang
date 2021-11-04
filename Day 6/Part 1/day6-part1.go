@@ -31,6 +31,7 @@ func getCoords(input string) string {
 	reg, err := regexp.Compile("[^0-9]+")
 	if err != nil {
 		log.Fatal(err)
+		fmt.Println("getcoords error")
 	}
 	coords := reg.ReplaceAllString(input, " ")
 
@@ -63,17 +64,15 @@ func main() {
 	for i := 0; i < len(coordSplit); i++ {
 		currStr := coordSplit[i]
 
-		//fmt.Println(currStr)
+		fmt.Println(currStr)
 
 		currInt, err := strconv.Atoi(currStr)
 		if err != nil {
-			fmt.Println("error")
+			fmt.Println("conv to int error")
 		}
 
 		coords[i] = currInt
 	}
-
-	//fmt.Println(coords)
 
 	var lightArr [1000][1000]bool
 
@@ -88,6 +87,7 @@ func main() {
 			for k := startX; k < endX; k++ {
 				for j := startY; j < endY; j++ {
 					lightArr[k][j] = true
+					fmt.Println("on")
 				}
 			}
 
@@ -95,6 +95,7 @@ func main() {
 			for k := startX; k < endX; k++ {
 				for j := startY; j < endY; j++ {
 					lightArr[k][j] = false
+					fmt.Println("off")
 				}
 			}
 
@@ -103,15 +104,15 @@ func main() {
 				for j := startY; j < endY; j++ {
 					if lightArr[k][j] {
 						lightArr[k][j] = false
+						fmt.Println("toggle off")
 					} else {
 						lightArr[i][j] = true
+						fmt.Println("toggle on")
 					}
 				}
 			}
 
 		}
-
-		fmt.Println(lightArr)
 	}
 
 }

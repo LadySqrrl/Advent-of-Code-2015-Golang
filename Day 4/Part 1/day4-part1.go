@@ -18,7 +18,7 @@ func MD5(text string) string {
 
 func main() {
 
-	key := "iwrupvqb"
+	key := "yzbqklnj"
 
 	tempHash := ""
 	found := false
