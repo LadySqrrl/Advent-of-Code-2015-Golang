@@ -1,8 +1,9 @@
 rows, cols = (1000, 1000)
-lights = [[False for i in range(cols)] for j in range(rows)]
+lights = [[0 for i in range(cols)] for j in range(rows)]
 coord1 = ""
 coord2 = ""
 lines = []
+count = 0
 
 with open('input.txt') as dir:
     lines = dir.readlines()
@@ -31,31 +32,26 @@ for line in lines:
             for j in range(len(lights[i])):
                 if (i >= start1) & (i <= end1):
                     if (j >= start2) & (j <= end2):
-                        lights[i][j] = True
+                        lights[i][j] +=1
     elif "off" in line:
         for i in range(len(lights)):
             for j in range(len(lights[i])):
                 if (i >= start1) & (i <= end1):
                     if (j >= start2) & (j <= end2):
-                        lights[i][j] = False
+                        if lights[i][j] > 0:
+                            lights[i][j] -=1
     elif "toggle" in line:
         for i in range(len(lights)):
             for j in range(len(lights[i])):
                 if (i >= start1) & (i <= end1):
                     if (j >= start2) & (j <= end2):
-                        if lights[i][j] == True:
-                            lights[i][j] = False
-                        else:
-                            lights[i][j] = True
+                        lights[i][j] +=2
     else:
         print("error, no action identified")
 
-count = 0
-
 for i in range(len(lights)):
-            for j in range(len(lights[i])):
-                if lights[i][j] == True:
-                    count = count + 1
+    for j in range(len(lights[i])):
+        count += lights[i][j]
 
 print(count)
                    
